@@ -20,6 +20,10 @@
 		CE2241642BED39610091AB3C /* ImagesName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241632BED39610091AB3C /* ImagesName.swift */; };
 		CE2241662BED3B830091AB3C /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241652BED3B830091AB3C /* ChatList.swift */; };
 		CE2241692BED46E70091AB3C /* StateOfChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241682BED46E70091AB3C /* StateOfChatList.swift */; };
+		CE22416C2BED73070091AB3C /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22416B2BED73070091AB3C /* Tabbar.swift */; };
+		CE2241702BED83B00091AB3C /* TabbarElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22416F2BED83B00091AB3C /* TabbarElement.swift */; };
+		CE2241722BED83C60091AB3C /* IdentifableElementForTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241712BED83C60091AB3C /* IdentifableElementForTabbar.swift */; };
+		CE2241752BED84E00091AB3C /* DefaultWhiteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241742BED84E00091AB3C /* DefaultWhiteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		CE2241632BED39610091AB3C /* ImagesName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesName.swift; sourceTree = "<group>"; };
 		CE2241652BED3B830091AB3C /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		CE2241682BED46E70091AB3C /* StateOfChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateOfChatList.swift; sourceTree = "<group>"; };
+		CE22416B2BED73070091AB3C /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		CE22416F2BED83B00091AB3C /* TabbarElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarElement.swift; sourceTree = "<group>"; };
+		CE2241712BED83C60091AB3C /* IdentifableElementForTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifableElementForTabbar.swift; sourceTree = "<group>"; };
+		CE2241742BED84E00091AB3C /* DefaultWhiteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWhiteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,7 @@
 				CE2241672BED46D80091AB3C /* Enums */,
 				CE2241572BECFE070091AB3C /* Extensions */,
 				CE2241542BECFDB60091AB3C /* ListOfChatZone */,
+				CE22416D2BED838B0091AB3C /* Views */,
 				CE2241472BECF6910091AB3C /* ContentView.swift */,
 				CE2241492BECF6920091AB3C /* Assets.xcassets */,
 				CE22414B2BECF6920091AB3C /* Preview Content */,
@@ -140,6 +149,33 @@
 				CE2241652BED3B830091AB3C /* ChatList.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CE22416D2BED838B0091AB3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241732BED84D20091AB3C /* Buttons */,
+				CE22416E2BED839C0091AB3C /* Tabbar */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE22416E2BED839C0091AB3C /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				CE22416B2BED73070091AB3C /* Tabbar.swift */,
+				CE22416F2BED83B00091AB3C /* TabbarElement.swift */,
+				CE2241712BED83C60091AB3C /* IdentifableElementForTabbar.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		CE2241732BED84D20091AB3C /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241742BED84E00091AB3C /* DefaultWhiteButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,12 +251,16 @@
 				CE2241692BED46E70091AB3C /* StateOfChatList.swift in Sources */,
 				CE2241642BED39610091AB3C /* ImagesName.swift in Sources */,
 				CE2241482BECF6910091AB3C /* ContentView.swift in Sources */,
+				CE22416C2BED73070091AB3C /* Tabbar.swift in Sources */,
+				CE2241722BED83C60091AB3C /* IdentifableElementForTabbar.swift in Sources */,
 				CE22415E2BED0EE70091AB3C /* HeaderOfChatList.swift in Sources */,
 				CE2241592BECFE150091AB3C /* ColorTheme.swift in Sources */,
 				CE2241602BED35FD0091AB3C /* PlacehodlerForChatList.swift in Sources */,
 				CE2241662BED3B830091AB3C /* ChatList.swift in Sources */,
+				CE2241702BED83B00091AB3C /* TabbarElement.swift in Sources */,
 				CE2241462BECF6910091AB3C /* HypeApp.swift in Sources */,
 				CE2241622BED37640091AB3C /* ChatZoneViewModel.swift in Sources */,
+				CE2241752BED84E00091AB3C /* DefaultWhiteButton.swift in Sources */,
 				CE22415C2BED00470091AB3C /* ChatCell.swift in Sources */,
 				CE2241562BECFDCF0091AB3C /* ChatZone.swift in Sources */,
 			);
