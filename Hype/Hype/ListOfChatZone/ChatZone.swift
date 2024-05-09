@@ -8,22 +8,35 @@
 import SwiftUI
 
 struct ChatZone: View {
+    
+    @StateObject private var viewModel = ChatZoneViewModel()
+    
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
             
             Header()
             
-            ScrollView {
-               
-                VStack(spacing: 0) {
-                    ChatCell()
-                    ChatCell()
+            switch viewModel.getStateOfChatList() {
+            case .emptyList:
+                PlacehodlerForChatList(textOfButton: "Найти...") {
+                    viewModel.changeStateOfChatList()
                 }
-                .cornerRadius(20)
-                .padding(.top, 100)
+            case .someError:
+                PlacehodlerForChatList(descriptionString: "Ой, какая-то ошибка...", imageNameFromResources: .someError, textOfButton: "Повторить") {
+                    viewModel.changeStateOfChatList()
+                }
+            case .loadingChats:
+                PlacehodlerForChatList(descriptionString: "Ща загружу, погоди", imageNameFromResources: .loadingIcon, showButton: false) {
+                    viewModel.changeStateOfChatList()
+                }
+            case .chatWasLoading:
+                ChatList()
+                
+                Button("Сменить состояние экрана") {
+                    viewModel.changeStateOfChatList()
+                }
             }
-            .ignoresSafeArea(.all, edges: .top)
         }
     }
 }

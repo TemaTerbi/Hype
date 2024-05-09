@@ -15,6 +15,11 @@
 		CE2241592BECFE150091AB3C /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241582BECFE150091AB3C /* ColorTheme.swift */; };
 		CE22415C2BED00470091AB3C /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22415B2BED00470091AB3C /* ChatCell.swift */; };
 		CE22415E2BED0EE70091AB3C /* HeaderOfChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22415D2BED0EE70091AB3C /* HeaderOfChatList.swift */; };
+		CE2241602BED35FD0091AB3C /* PlacehodlerForChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22415F2BED35FD0091AB3C /* PlacehodlerForChatList.swift */; };
+		CE2241622BED37640091AB3C /* ChatZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241612BED37640091AB3C /* ChatZoneViewModel.swift */; };
+		CE2241642BED39610091AB3C /* ImagesName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241632BED39610091AB3C /* ImagesName.swift */; };
+		CE2241662BED3B830091AB3C /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241652BED3B830091AB3C /* ChatList.swift */; };
+		CE2241692BED46E70091AB3C /* StateOfChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241682BED46E70091AB3C /* StateOfChatList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 		CE2241582BECFE150091AB3C /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		CE22415B2BED00470091AB3C /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		CE22415D2BED0EE70091AB3C /* HeaderOfChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderOfChatList.swift; sourceTree = "<group>"; };
+		CE22415F2BED35FD0091AB3C /* PlacehodlerForChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacehodlerForChatList.swift; sourceTree = "<group>"; };
+		CE2241612BED37640091AB3C /* ChatZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatZoneViewModel.swift; sourceTree = "<group>"; };
+		CE2241632BED39610091AB3C /* ImagesName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesName.swift; sourceTree = "<group>"; };
+		CE2241652BED3B830091AB3C /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
+		CE2241682BED46E70091AB3C /* StateOfChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateOfChatList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2241532BECF6A70091AB3C /* Resource */,
+				CE2241672BED46D80091AB3C /* Enums */,
 				CE2241572BECFE070091AB3C /* Extensions */,
 				CE2241542BECFDB60091AB3C /* ListOfChatZone */,
 				CE2241472BECF6910091AB3C /* ContentView.swift */,
@@ -88,9 +99,10 @@
 		CE2241542BECFDB60091AB3C /* ListOfChatZone */ = {
 			isa = PBXGroup;
 			children = (
+				CE22416A2BED470E0091AB3C /* Views */,
 				CE22415A2BED003B0091AB3C /* ChatCell */,
 				CE2241552BECFDCF0091AB3C /* ChatZone.swift */,
-				CE22415D2BED0EE70091AB3C /* HeaderOfChatList.swift */,
+				CE2241612BED37640091AB3C /* ChatZoneViewModel.swift */,
 			);
 			path = ListOfChatZone;
 			sourceTree = "<group>";
@@ -109,6 +121,25 @@
 				CE22415B2BED00470091AB3C /* ChatCell.swift */,
 			);
 			path = ChatCell;
+			sourceTree = "<group>";
+		};
+		CE2241672BED46D80091AB3C /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241632BED39610091AB3C /* ImagesName.swift */,
+				CE2241682BED46E70091AB3C /* StateOfChatList.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		CE22416A2BED470E0091AB3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE22415F2BED35FD0091AB3C /* PlacehodlerForChatList.swift */,
+				CE22415D2BED0EE70091AB3C /* HeaderOfChatList.swift */,
+				CE2241652BED3B830091AB3C /* ChatList.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,10 +212,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2241692BED46E70091AB3C /* StateOfChatList.swift in Sources */,
+				CE2241642BED39610091AB3C /* ImagesName.swift in Sources */,
 				CE2241482BECF6910091AB3C /* ContentView.swift in Sources */,
 				CE22415E2BED0EE70091AB3C /* HeaderOfChatList.swift in Sources */,
 				CE2241592BECFE150091AB3C /* ColorTheme.swift in Sources */,
+				CE2241602BED35FD0091AB3C /* PlacehodlerForChatList.swift in Sources */,
+				CE2241662BED3B830091AB3C /* ChatList.swift in Sources */,
 				CE2241462BECF6910091AB3C /* HypeApp.swift in Sources */,
+				CE2241622BED37640091AB3C /* ChatZoneViewModel.swift in Sources */,
 				CE22415C2BED00470091AB3C /* ChatCell.swift in Sources */,
 				CE2241562BECFDCF0091AB3C /* ChatZone.swift in Sources */,
 			);

@@ -26,6 +26,8 @@ struct ChatCell: View {
                 Text("Дароу, пойдешь в валик сегодня?")
                     .font(.system(size: 18, weight: .regular, design: .rounded))
             }
+            
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: 76)
         .background(Color.white)
