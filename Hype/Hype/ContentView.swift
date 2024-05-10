@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = ContentViewModel()
+    
     var body: some View {
-        Tabbar()
+        VStack {
+            switch viewModel.getSessionState() {
+            case .logout:
+                VStack {
+                    Button("Войти") {
+                        Task {
+                            await SupabaseManager.shared.sigIn(email: "tematerbi@mail.ru", password: "123456")
+                        }
+                    }
+                }
+            case .loggin:
+                Tabbar()
+                    .onAppear {
+                        Task {
+                            await SupabaseManager.shared.getCurrentUser()
+                        }
+                    }
+            }
+        }
+        .onAppear {
+            Task {
+                await SupabaseManager.shared.checkSession()
+            }
+        }
     }
 }
 

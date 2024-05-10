@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlacehodlerForChatList: View {
     
-    var descriptionString = "Начните искать друга, чтобы начать вашу историю общения!"
+    var descriptionString = "Начните искать друзей, чтобы начать вашу историю общения!"
     var imageNameFromResources: ImagesName = .emptyHome
     var showButton: Bool = true
     var textOfButton: String?

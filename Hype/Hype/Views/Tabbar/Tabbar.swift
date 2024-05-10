@@ -22,7 +22,11 @@ struct Tabbar: View {
                 ChatZone()
                     .tag(1)
                 
-                Text("Тут будет поиск")
+                Button("Выйти", action: {
+                    Task {
+                        await SupabaseManager.shared.signOut()
+                    }
+                })
                     .tag(2)
             }
             
