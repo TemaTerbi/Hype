@@ -22,6 +22,12 @@ struct ChatZone: View {
                 PlacehodlerForChatList(textOfButton: "Найти...") {
                     viewModel.changeStateOfChatList()
                 }
+                
+                Button("Добавить комнату") {
+                    Task {
+                        await SupabaseService.shared.insertNewRoom()
+                    }
+                }
             case .someError:
                 PlacehodlerForChatList(descriptionString: "Ой, какая-то ошибка...", imageNameFromResources: .someError, textOfButton: "Повторить") {
                     viewModel.changeStateOfChatList()
@@ -31,11 +37,24 @@ struct ChatZone: View {
                     viewModel.changeStateOfChatList()
                 }
             case .chatWasLoading:
-                ChatList()
-                
-                Button("Сменить состояние экрана") {
-                    viewModel.changeStateOfChatList()
+                ScrollView {
+                   
+                    VStack(spacing: 0) {
+                        ForEach(viewModel.roomsList) { room in
+                            ChatCell(room: room)
+                        }
+                        
+                        Button("Добавить комнату") {
+                            Task {
+                                await SupabaseService.shared.insertNewRoom()
+                            }
+                        }
+                    }
+                    .cornerRadius(20)
+                    .padding(.top, 100)
                 }
+                .ignoresSafeArea(.all, edges: .top)
+                .scrollIndicators(.hidden)
             }
         }
     }

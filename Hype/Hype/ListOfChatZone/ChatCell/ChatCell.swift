@@ -8,6 +8,25 @@
 import SwiftUI
 
 struct ChatCell: View {
+    
+    @State private var lastetMessageFromUsername: String = ""
+    @State private var lastetMessage: String = ""
+    @State var room: Rooms
+    
+    private func setupData() {
+        let messages = room.messages
+        
+        let keys = messages?.last?.keys.reversed()
+        let lastKeysForUUID = UUID(uuidString: keys?.first ?? "")
+        let lastKeyForMessage = keys?.first ?? ""
+        
+        lastetMessage = messages?.last?[lastKeyForMessage]?.stringValue ?? ""
+        
+        if let lastUUID = lastKeysForUUID {
+            lastetMessageFromUsername = lastUUID == room.own_user ? room.ownUserName ?? "" : room.guestUserName ?? ""
+        }
+    }
+    
     var body: some View {
         HStack {
             Circle()
@@ -20,10 +39,10 @@ struct ChatCell: View {
                 }
             
             VStack(alignment: .leading) {
-                Text("Долбаеб")
+                Text(lastetMessageFromUsername)
                     .font(.system(size: 23, weight: .medium, design: .rounded))
                 
-                Text("Дароу, пойдешь в валик сегодня?")
+                Text(lastetMessage)
                     .font(.system(size: 18, weight: .regular, design: .rounded))
             }
             
@@ -31,9 +50,8 @@ struct ChatCell: View {
         }
         .frame(maxWidth: .infinity, maxHeight: 76)
         .background(Color.white)
+        .onAppear {
+            setupData()
+        }
     }
-}
-
-#Preview {
-    ChatCell()
 }

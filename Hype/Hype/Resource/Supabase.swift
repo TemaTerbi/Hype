@@ -9,11 +9,11 @@ import Foundation
 import Supabase
 import SwiftUI
 
-class SupabaseManager {
+class SupabaseService {
     private let client = SupabaseClient(supabaseURL: URL(string: EnvObject.supabaseUrl)!, supabaseKey: EnvObject.supabaseKey)
     private var session: Session?
     
-    static let shared = SupabaseManager()
+    static let shared = SupabaseService()
     
     @Published var sigInState: SigningState = .logout
     
@@ -33,6 +33,28 @@ class SupabaseManager {
         print("не удалось получить сессию")
     }
     
+    private func getCurrentUserBy(id: UUID) async -> Profile {
+        do {
+            let profiles: [Profile] = try await client.from(EnvObject.profilesTable)
+                .select()
+                .execute()
+                .value
+            
+            let user = profiles.first { profile in
+                profile.id == id
+            }
+            
+            if let userNonOptional = user  {
+                return userNonOptional
+            }
+        } catch(let error) {
+            invalidSession()
+            print(error)
+        }
+        
+        return Profile(id: UUID())
+    }
+    
     //MARK: - Public func
     func sigIn(email: String, password: String) async {
         do {
@@ -41,6 +63,14 @@ class SupabaseManager {
             await checkUserForSigin()
         } catch {
             print("Не удалось войти")
+        }
+    }
+    
+    func signUp(email: String, password: String) async {
+        do {
+            try await client.auth.signUp(email: email, password: password)
+        } catch {
+            //
         }
     }
     
@@ -75,18 +105,79 @@ class SupabaseManager {
     func getCurrentUser() async {
         do {
             let profiles: [Profile] = try await client.from(EnvObject.profilesTable)
-              .select()
-              .execute()
-              .value
+                .select()
+                .execute()
+                .value
             
             let user = profiles.first { profile in
                 profile.id == session?.user.id
             }
             
             print(user)
-        } catch {
+        } catch(let error) {
             invalidSession()
-            print("не удалось получить данные пользователя")
+            print(error)
+        }
+    }
+    
+    func fetchRooms() async -> [Rooms] {
+        var resultRoom: [Rooms] = []
+        
+        do {
+            let rooms: [Rooms] = try await client.from(EnvObject.roomsTable)
+                .select()
+                .execute()
+                .value
+            
+            for room in rooms {
+                var currentRoom = room
+                currentRoom.ownUserName = await getCurrentUserBy(id: currentRoom.own_user).username ?? ""
+                currentRoom.guestUserName = await getCurrentUserBy(id: currentRoom.guest_user).username ?? ""
+                
+                resultRoom.append(currentRoom)
+            }
+            
+            
+            return resultRoom
+        } catch(let error) {
+            print(error)
+            return []
+        }
+    }
+    
+    func insertNewRoom() async {
+        let rooms = Rooms(own_user: session?.user.id ?? UUID(), guest_user: UUID(uuidString: "ae9ddbf8-872a-4ce1-9938-2d5f68fd0272")!, messages: [["\(session?.user.id ?? UUID())": "MESSAGE"]], chanel_token: "\(Int.random(in: 0...1000))")
+        
+        do {
+            let response = try await client.from(EnvObject.roomsTable)
+                .insert(rooms)
+                .execute()
+        } catch (let error) {
+            print(error)
+        }
+    }
+    
+    func startListening(returnNewRoom: @escaping (Rooms) -> Void) async {
+        let channel = await client.channel("changeRooms")
+        
+        let insertions = await channel.postgresChange(
+            InsertAction.self,
+            schema: "public",
+            table: EnvObject.roomsTable
+        )
+        
+        await channel.subscribe()
+        
+        for await insert in insertions {
+            let dictionary = insert.record
+            do {
+                var newRoom = try dictionary.decode(as: Rooms.self, decoder: JSONDecoder())
+                newRoom.ownUserName = await getCurrentUserBy(id: newRoom.own_user).username ?? ""
+                newRoom.guestUserName = await getCurrentUserBy(id: newRoom.guest_user).username ?? ""
+                returnNewRoom(newRoom)
+            } catch(let error) {
+                print(error)
+            }
         }
     }
 }

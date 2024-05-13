@@ -15,9 +15,21 @@ struct ContentView: View {
             switch viewModel.getSessionState() {
             case .logout:
                 VStack {
-                    Button("Войти") {
+                    Button("Войти Imya") {
                         Task {
-                            await SupabaseManager.shared.sigIn(email: "tematerbi@mail.ru", password: "123456")
+                            await SupabaseService.shared.sigIn(email: "tematerbiapple@mail.ru", password: "123456")
+                        }
+                    }
+                    
+                    Button("Войти TeRb1") {
+                        Task {
+                            await SupabaseService.shared.sigIn(email: "tematerbi@mail.ru", password: "123456")
+                        }
+                    }
+                    
+                    Button("Рега") {
+                        Task {
+                            await SupabaseService.shared.signUp(email: "tematerbiapple@mail.ru", password: "123456")
                         }
                     }
                 }
@@ -25,14 +37,14 @@ struct ContentView: View {
                 Tabbar()
                     .onAppear {
                         Task {
-                            await SupabaseManager.shared.getCurrentUser()
+                            await SupabaseService.shared.getCurrentUser()
                         }
                     }
             }
         }
         .onAppear {
             Task {
-                await SupabaseManager.shared.checkSession()
+                await SupabaseService.shared.checkSession()
             }
         }
     }

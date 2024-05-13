@@ -17,7 +17,7 @@ class ContentViewModel: ObservableObject {
     }
     
     private func getSessionStateFromManager() {
-        SupabaseManager.shared.$sigInState.sink { state in
+        SupabaseService.shared.$sigInState.sink { state in
             DispatchQueue.main.async {
                 self.signinState = state
             }

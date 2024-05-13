@@ -6,21 +6,24 @@
 //
 
 import SwiftUI
+import Combine
 
-struct ChatList: View {
-    var body: some View {
-        ScrollView {
-           
-            VStack(spacing: 0) {
-                ChatCell()
-                ChatCell()
-                ChatCell()
-                ChatCell()
-            }
-            .cornerRadius(20)
-            .padding(.top, 100)
-        }
-        .ignoresSafeArea(.all, edges: .top)
-        .scrollIndicators(.hidden)
-    }
-}
+//struct ChatList: View {
+//    
+//    @Binding var roomsList: [Rooms]
+//    
+//    var body: some View {
+//        ScrollView {
+//           
+//            VStack(spacing: 0) {
+//                ForEach(roomsList) { room in
+//                    ChatCell()
+//                }
+//            }
+//            .cornerRadius(20)
+//            .padding(.top, 100)
+//        }
+//        .ignoresSafeArea(.all, edges: .top)
+//        .scrollIndicators(.hidden)
+//    }
+//}

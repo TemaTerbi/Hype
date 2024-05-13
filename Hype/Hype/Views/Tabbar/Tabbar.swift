@@ -24,7 +24,7 @@ struct Tabbar: View {
                 
                 Button("Выйти", action: {
                     Task {
-                        await SupabaseManager.shared.signOut()
+                        await SupabaseService.shared.signOut()
                     }
                 })
                     .tag(2)
