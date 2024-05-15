@@ -9,6 +9,9 @@ import SwiftUI
 
 struct Tabbar: View {
     
+    @StateObject private var viewModel = ChatZoneViewModel()
+    @State private var tabbarIsShow = true
+    
     private var tabbarElements: [IdentifableElementForTabbar] = [
         IdentifableElementForTabbar(textOfElement: "Чаты", image: "chat", indexOfElement: 1),
         IdentifableElementForTabbar(textOfElement: "Поиск", image: "search", indexOfElement: 2),
@@ -17,41 +20,43 @@ struct Tabbar: View {
     @State private var tabSelection = 1
     
     var body: some View {
-        ZStack {
-            TabView(selection: $tabSelection) {
-                ChatZone()
-                    .tag(1)
-                
-                Button("Выйти", action: {
-                    Task {
-                        await SupabaseService.shared.signOut()
-                    }
-                })
-                    .tag(2)
-            }
-            
-            VStack {
-                Spacer()
-                
-                HStack {
-                    ForEach(tabbarElements) { el in
-                        Spacer()
-                        TabbarElement(data: el, tabSelection: $tabSelection)
-                            .onTapGesture {
-                                tabSelection = (tabbarElements.firstIndex(where: {$0 == el}) ?? 0) + 1
-                            }
-                        Spacer()
-                    }
+        NavigationView {
+            ZStack {
+                TabView(selection: $tabSelection) {
+                    ChatZone(tabbarIsShow: $tabbarIsShow)
+                        .tag(1)
+                    
+                    SearchZone()
+                        .tag(2)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 106)
-                .background(Color.purpleSolid)
-                .clipShape(.rect(
-                    topLeadingRadius: 20,
-                    topTrailingRadius: 20
-                ))
+                .environmentObject(viewModel)
+                
+                VStack {
+                    Spacer()
+                    
+                    HStack {
+                        ForEach(tabbarElements) { el in
+                            Spacer()
+                            TabbarElement(data: el, tabSelection: $tabSelection)
+                                .onTapGesture {
+                                    tabSelection = (tabbarElements.firstIndex(where: {$0 == el}) ?? 0) + 1
+                                }
+                            Spacer()
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 106)
+                    .background(Color.purpleSolid)
+                    .background(.ultraThinMaterial)
+                    .clipShape(.rect(
+                        topLeadingRadius: 20,
+                        topTrailingRadius: 20
+                    ))
+                }
+                .ignoresSafeArea(.all, edges: .bottom)
+                .opacity(tabbarIsShow ? 1 : 0)
             }
-            .ignoresSafeArea(.all, edges: .bottom)
         }
+        .accentColor(Color.black)
     }
 }
 

@@ -17,14 +17,11 @@ struct ChatCell: View {
         let messages = room.messages
         
         let keys = messages?.last?.keys.reversed()
-        let lastKeysForUUID = UUID(uuidString: keys?.first ?? "")
         let lastKeyForMessage = keys?.first ?? ""
         
-        lastetMessage = messages?.last?[lastKeyForMessage]?.stringValue ?? ""
+        lastetMessage = messages?.last?[lastKeyForMessage]?.stringValue ?? "Начните общаться с \(room.guestUserName ?? "")"
         
-        if let lastUUID = lastKeysForUUID {
-            lastetMessageFromUsername = lastUUID == room.own_user ? room.ownUserName ?? "" : room.guestUserName ?? ""
-        }
+        lastetMessageFromUsername = room.guestUserName ?? ""
     }
     
     var body: some View {

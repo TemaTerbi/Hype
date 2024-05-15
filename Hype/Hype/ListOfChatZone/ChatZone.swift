@@ -9,24 +9,19 @@ import SwiftUI
 
 struct ChatZone: View {
     
-    @StateObject private var viewModel = ChatZoneViewModel()
+    @EnvironmentObject private var viewModel: ChatZoneViewModel
+    @Binding var tabbarIsShow: Bool
     
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
             
-            Header()
+            Header(stateOfChatList: $viewModel.stateOfChatList)
             
             switch viewModel.getStateOfChatList() {
             case .emptyList:
                 PlacehodlerForChatList(textOfButton: "Найти...") {
                     viewModel.changeStateOfChatList()
-                }
-                
-                Button("Добавить комнату") {
-                    Task {
-                        await SupabaseService.shared.insertNewRoom()
-                    }
                 }
             case .someError:
                 PlacehodlerForChatList(descriptionString: "Ой, какая-то ошибка...", imageNameFromResources: .someError, textOfButton: "Повторить") {
@@ -41,12 +36,10 @@ struct ChatZone: View {
                    
                     VStack(spacing: 0) {
                         ForEach(viewModel.roomsList) { room in
-                            ChatCell(room: room)
-                        }
-                        
-                        Button("Добавить комнату") {
-                            Task {
-                                await SupabaseService.shared.insertNewRoom()
+                            NavigationLink {
+                                MessagesWindow(tabbarIsShow: $tabbarIsShow)
+                            } label: {
+                                ChatCell(room: room)
                             }
                         }
                     }
@@ -55,11 +48,16 @@ struct ChatZone: View {
                 }
                 .ignoresSafeArea(.all, edges: .top)
                 .scrollIndicators(.hidden)
+                .onAppear {
+                    withAnimation(.bouncy) {
+                        tabbarIsShow = true
+                    }
+                }
             }
         }
     }
 }
 
-#Preview {
-    ChatZone()
-}
+//#Preview {
+//    ChatZone()
+//}

@@ -11,7 +11,7 @@ import Combine
 @MainActor
 class ChatZoneViewModel: ObservableObject {
     
-    @Published private var stateOfChatList: StateOfChatList = .emptyList
+    @Published var stateOfChatList: StateOfChatList = .emptyList
     @Published private var newRoom: Rooms?
     @Published var roomsList: [Rooms] = []
     

@@ -120,6 +120,22 @@ class SupabaseService {
         }
     }
     
+    func fetchProfiles() async -> [Profile] {
+        do {
+            let profiles: [Profile] = try await client.from(EnvObject.profilesTable)
+                .select()
+                .execute()
+                .value
+            
+            let filterProfiles = profiles.filter { $0.id != session?.user.id }
+            
+            return filterProfiles
+        } catch(let error) {
+            print(error)
+            return []
+        }
+    }
+    
     func fetchRooms() async -> [Rooms] {
         var resultRoom: [Rooms] = []
         
@@ -145,8 +161,18 @@ class SupabaseService {
         }
     }
     
-    func insertNewRoom() async {
-        let rooms = Rooms(own_user: session?.user.id ?? UUID(), guest_user: UUID(uuidString: "ae9ddbf8-872a-4ce1-9938-2d5f68fd0272")!, messages: [["\(session?.user.id ?? UUID())": "MESSAGE"]], chanel_token: "\(Int.random(in: 0...1000))")
+    func insertNewRoom(guestUserId: UUID) async {
+        let someMessages: [String] = [
+            "Привет! Как дела?",
+            "Тестовое сообщение",
+            "Я платину апнул!",
+            "Новая комната :)",
+            "Пабло...",
+        ]
+        
+        let randomMessage = AnyJSON(stringLiteral: someMessages.randomElement() ?? "")
+        
+        let rooms = Rooms(own_user: session?.user.id ?? UUID(), guest_user: guestUserId, messages: [], chanel_token: "\(Int.random(in: 0...10000))")
         
         do {
             let response = try await client.from(EnvObject.roomsTable)

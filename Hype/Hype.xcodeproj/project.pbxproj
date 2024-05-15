@@ -35,6 +35,13 @@
 		CE2241892BEE334B0091AB3C /* SiginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241882BEE334B0091AB3C /* SiginState.swift */; };
 		CE22418B2BEE33760091AB3C /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22418A2BEE33760091AB3C /* ContentViewModel.swift */; };
 		CE22418D2BEE33C70091AB3C /* EnvrimomentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22418C2BEE33C70091AB3C /* EnvrimomentObject.swift */; };
+		CE2241902BF216CA0091AB3C /* SearchZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22418F2BF216CA0091AB3C /* SearchZone.swift */; };
+		CE2241922BF21B5A0091AB3C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241912BF21B5A0091AB3C /* SearchViewModel.swift */; };
+		CE2241952BF247E00091AB3C /* MessagesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241942BF247E00091AB3C /* MessagesWindow.swift */; };
+		CE2241982BF24BCC0091AB3C /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241972BF24BCC0091AB3C /* MessageView.swift */; };
+		CE22419C2BF57A9A0091AB3C /* MessageTetField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419B2BF57A9A0091AB3C /* MessageTetField.swift */; };
+		CE22419E2BF57AB20091AB3C /* MessageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419D2BF57AB20091AB3C /* MessageControlView.swift */; };
+		CE2241A02BF57AC80091AB3C /* HeaderForMessageWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419F2BF57AC80091AB3C /* HeaderForMessageWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +68,13 @@
 		CE2241882BEE334B0091AB3C /* SiginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiginState.swift; sourceTree = "<group>"; };
 		CE22418A2BEE33760091AB3C /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		CE22418C2BEE33C70091AB3C /* EnvrimomentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvrimomentObject.swift; sourceTree = "<group>"; };
+		CE22418F2BF216CA0091AB3C /* SearchZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchZone.swift; sourceTree = "<group>"; };
+		CE2241912BF21B5A0091AB3C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		CE2241942BF247E00091AB3C /* MessagesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesWindow.swift; sourceTree = "<group>"; };
+		CE2241972BF24BCC0091AB3C /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		CE22419B2BF57A9A0091AB3C /* MessageTetField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTetField.swift; sourceTree = "<group>"; };
+		CE22419D2BF57AB20091AB3C /* MessageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageControlView.swift; sourceTree = "<group>"; };
+		CE22419F2BF57AC80091AB3C /* HeaderForMessageWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderForMessageWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +117,7 @@
 				CE2241532BECF6A70091AB3C /* Resource */,
 				CE2241672BED46D80091AB3C /* Enums */,
 				CE2241572BECFE070091AB3C /* Extensions */,
+				CE22418E2BF216B10091AB3C /* SearchZone */,
 				CE2241542BECFDB60091AB3C /* ListOfChatZone */,
 				CE22416D2BED838B0091AB3C /* Views */,
 				CE2241472BECF6910091AB3C /* ContentView.swift */,
@@ -135,6 +150,7 @@
 		CE2241542BECFDB60091AB3C /* ListOfChatZone */ = {
 			isa = PBXGroup;
 			children = (
+				CE2241932BF247C50091AB3C /* MessageViews */,
 				CE22416A2BED470E0091AB3C /* Views */,
 				CE22415A2BED003B0091AB3C /* ChatCell */,
 				CE2241552BECFDCF0091AB3C /* ChatZone.swift */,
@@ -211,6 +227,35 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE22418E2BF216B10091AB3C /* SearchZone */ = {
+			isa = PBXGroup;
+			children = (
+				CE22418F2BF216CA0091AB3C /* SearchZone.swift */,
+				CE2241912BF21B5A0091AB3C /* SearchViewModel.swift */,
+			);
+			path = SearchZone;
+			sourceTree = "<group>";
+		};
+		CE2241932BF247C50091AB3C /* MessageViews */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241962BF24BC30091AB3C /* Views */,
+				CE2241942BF247E00091AB3C /* MessagesWindow.swift */,
+			);
+			path = MessageViews;
+			sourceTree = "<group>";
+		};
+		CE2241962BF24BC30091AB3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241972BF24BCC0091AB3C /* MessageView.swift */,
+				CE22419B2BF57A9A0091AB3C /* MessageTetField.swift */,
+				CE22419D2BF57AB20091AB3C /* MessageControlView.swift */,
+				CE22419F2BF57AC80091AB3C /* HeaderForMessageWindow.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,9 +339,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2241922BF21B5A0091AB3C /* SearchViewModel.swift in Sources */,
 				CE2241872BEDA5E00091AB3C /* Profile.swift in Sources */,
+				CE2241952BF247E00091AB3C /* MessagesWindow.swift in Sources */,
 				CE22418D2BEE33C70091AB3C /* EnvrimomentObject.swift in Sources */,
 				CE2241692BED46E70091AB3C /* StateOfChatList.swift in Sources */,
+				CE22419C2BF57A9A0091AB3C /* MessageTetField.swift in Sources */,
 				CE2241642BED39610091AB3C /* ImagesName.swift in Sources */,
 				CE2241482BECF6910091AB3C /* ContentView.swift in Sources */,
 				CE22416C2BED73070091AB3C /* Tabbar.swift in Sources */,
@@ -304,15 +352,19 @@
 				CE22415E2BED0EE70091AB3C /* HeaderOfChatList.swift in Sources */,
 				CE2241592BECFE150091AB3C /* ColorTheme.swift in Sources */,
 				CE2241602BED35FD0091AB3C /* PlacehodlerForChatList.swift in Sources */,
+				CE2241982BF24BCC0091AB3C /* MessageView.swift in Sources */,
 				CE2241662BED3B830091AB3C /* ChatList.swift in Sources */,
 				CE2241702BED83B00091AB3C /* TabbarElement.swift in Sources */,
 				CE2241462BECF6910091AB3C /* HypeApp.swift in Sources */,
 				CE22418B2BEE33760091AB3C /* ContentViewModel.swift in Sources */,
 				CE2241892BEE334B0091AB3C /* SiginState.swift in Sources */,
 				CE2241622BED37640091AB3C /* ChatZoneViewModel.swift in Sources */,
+				CE2241902BF216CA0091AB3C /* SearchZone.swift in Sources */,
+				CE2241A02BF57AC80091AB3C /* HeaderForMessageWindow.swift in Sources */,
 				CE2241752BED84E00091AB3C /* DefaultWhiteButton.swift in Sources */,
 				CE2241822BED89CA0091AB3C /* Supabase.swift in Sources */,
 				CE22415C2BED00470091AB3C /* ChatCell.swift in Sources */,
+				CE22419E2BF57AB20091AB3C /* MessageControlView.swift in Sources */,
 				CE2241562BECFDCF0091AB3C /* ChatZone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

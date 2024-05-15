@@ -13,4 +13,6 @@ enum ImagesName: String {
     case searchUnselected = "searchUnselected"
     case searchSelected = "searchSelected"
     case chatSelected = "chatSelected"
+    case chatBackground = "ChatBackground"
+    case backArrow = "backArrow"
 }

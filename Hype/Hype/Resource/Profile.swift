@@ -8,7 +8,7 @@
 import Foundation
 import PostgREST
 
-struct Profile: Codable {
+struct Profile: Codable, Identifiable {
     var id: UUID
     var full_name: String?
     var email: String?
