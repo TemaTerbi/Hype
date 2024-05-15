@@ -206,4 +206,8 @@ class SupabaseService {
             }
         }
     }
+    
+    func getSessionId() -> UUID {
+        session?.user.id ?? UUID()
+    }
 }

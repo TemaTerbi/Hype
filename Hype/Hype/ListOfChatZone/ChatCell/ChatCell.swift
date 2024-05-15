@@ -19,9 +19,15 @@ struct ChatCell: View {
         let keys = messages?.last?.keys.reversed()
         let lastKeyForMessage = keys?.first ?? ""
         
-        lastetMessage = messages?.last?[lastKeyForMessage]?.stringValue ?? "Начните общаться с \(room.guestUserName ?? "")"
+        let currentSessionId = SupabaseService.shared.getSessionId()
         
-        lastetMessageFromUsername = room.guestUserName ?? ""
+        if currentSessionId == room.own_user {
+            lastetMessageFromUsername = room.guestUserName ?? ""
+            lastetMessage = messages?.last?[lastKeyForMessage]?.stringValue ?? "Начните общаться с \(room.guestUserName ?? "")!"
+        } else {
+            lastetMessageFromUsername = room.ownUserName ?? ""
+            lastetMessage = messages?.last?[lastKeyForMessage]?.stringValue ?? "\(room.ownUserName ?? "") хочет с вами пообщаться!"
+        }
     }
     
     var body: some View {
