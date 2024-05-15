@@ -142,6 +142,7 @@ class SupabaseService {
         do {
             let rooms: [Rooms] = try await client.from(EnvObject.roomsTable)
                 .select()
+                .eq("own_user", value: session?.user.id)
                 .execute()
                 .value
             
@@ -153,6 +154,22 @@ class SupabaseService {
                 resultRoom.append(currentRoom)
             }
             
+            if rooms.isEmpty {
+                let rooms: [Rooms] = try await client.from(EnvObject.roomsTable)
+                    .select()
+                    .eq("guest_user", value: session?.user.id)
+                    .execute()
+                    .value
+                
+                for room in rooms {
+                    var currentRoom = room
+                    currentRoom.ownUserName = await getCurrentUserBy(id: currentRoom.own_user).username ?? ""
+                    currentRoom.guestUserName = await getCurrentUserBy(id: currentRoom.guest_user).username ?? ""
+                    
+                    resultRoom.append(currentRoom)
+                }
+            }
+            
             
             return resultRoom
         } catch(let error) {
@@ -162,16 +179,6 @@ class SupabaseService {
     }
     
     func insertNewRoom(guestUserId: UUID) async {
-        let someMessages: [String] = [
-            "Привет! Как дела?",
-            "Тестовое сообщение",
-            "Я платину апнул!",
-            "Новая комната :)",
-            "Пабло...",
-        ]
-        
-        let randomMessage = AnyJSON(stringLiteral: someMessages.randomElement() ?? "")
-        
         let rooms = Rooms(own_user: session?.user.id ?? UUID(), guest_user: guestUserId, messages: [], chanel_token: "\(Int.random(in: 0...10000))")
         
         do {

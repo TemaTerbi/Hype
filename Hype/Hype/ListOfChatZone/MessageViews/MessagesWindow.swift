@@ -36,9 +36,9 @@ struct MessagesWindow: View {
                     .onAppear {
                         value.scrollTo(19, anchor: .top)
                     }
-                    .onChange(of: tappedOnMessageTextField) { oldValue, newValue in
+                    .onChange(of: tappedOnMessageTextField, perform: { _ in
                         value.scrollTo(19, anchor: .top)
-                    }
+                    })
                 }
             }
             .padding(.horizontal, 30)
