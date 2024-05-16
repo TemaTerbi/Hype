@@ -140,36 +140,27 @@ class SupabaseService {
         var resultRoom: [Rooms] = []
         
         do {
-            let rooms: [Rooms] = try await client.from(EnvObject.roomsTable)
+            let myOwnRooms: [Rooms] = try await client.from(EnvObject.roomsTable)
                 .select()
                 .eq("own_user", value: session?.user.id)
                 .execute()
                 .value
             
-            for room in rooms {
+            let guestRoom: [Rooms] = try await client.from(EnvObject.roomsTable)
+                .select()
+                .eq("guest_user", value: session?.user.id)
+                .execute()
+                .value
+            
+            let allRooms = myOwnRooms + guestRoom
+            
+            for room in allRooms {
                 var currentRoom = room
                 currentRoom.ownUserName = await getCurrentUserBy(id: currentRoom.own_user).username ?? ""
                 currentRoom.guestUserName = await getCurrentUserBy(id: currentRoom.guest_user).username ?? ""
                 
                 resultRoom.append(currentRoom)
             }
-            
-            if rooms.isEmpty {
-                let rooms: [Rooms] = try await client.from(EnvObject.roomsTable)
-                    .select()
-                    .eq("guest_user", value: session?.user.id)
-                    .execute()
-                    .value
-                
-                for room in rooms {
-                    var currentRoom = room
-                    currentRoom.ownUserName = await getCurrentUserBy(id: currentRoom.own_user).username ?? ""
-                    currentRoom.guestUserName = await getCurrentUserBy(id: currentRoom.guest_user).username ?? ""
-                    
-                    resultRoom.append(currentRoom)
-                }
-            }
-            
             
             return resultRoom
         } catch(let error) {

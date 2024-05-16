@@ -14,9 +14,7 @@ struct MessagesWindow: View {
     @Binding var tabbarIsShow: Bool
     
     var body: some View {
-        ZStack {
-            Image(ImagesName.chatBackground.rawValue)
-            
+        VStack {
             VStack(spacing: 0) {
                 ScrollViewReader { value in
                     ScrollView {
@@ -29,24 +27,28 @@ struct MessagesWindow: View {
                             .id(i)
                         }
                     }
-                    .padding(.top, 80)
-                    .padding(.bottom, tappedOnMessageTextField ? 340 : 150)
                     .ignoresSafeArea(.all, edges: .top)
                     .scrollIndicators(.hidden)
                     .onAppear {
-                        value.scrollTo(19, anchor: .top)
+                        value.scrollTo(19, anchor: .bottom)
                     }
-                    .onChange(of: tappedOnMessageTextField, perform: { _ in
-                        value.scrollTo(19, anchor: .top)
-                    })
                 }
             }
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 10)
             
-            MessageControlView(tappedOnMessageTextField: _tappedOnMessageTextField, messageText: $messageText)
-            
-            HeaderForMessageWindow(tappedOnMessageTextField: _tappedOnMessageTextField)
         }
+        .background(content: {
+            Image(ImagesName.chatBackground.rawValue)
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+                .scaledToFill()
+        })
+        .safeAreaInset(edge: .top, content: {
+            HeaderForMessageWindow(tappedOnMessageTextField: _tappedOnMessageTextField)
+        })
+        .safeAreaInset(edge: .bottom, content: {
+            MessageControlView(tappedOnMessageTextField: _tappedOnMessageTextField, messageText: $messageText)
+        })
         .navigationBarBackButtonHidden()
         .onAppear {
             withAnimation(.bouncy) {

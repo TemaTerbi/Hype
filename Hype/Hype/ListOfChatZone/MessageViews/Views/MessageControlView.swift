@@ -15,7 +15,7 @@ struct MessageControlView: View {
     var body: some View {
         VStack {
             
-            Spacer()
+//            Spacer()
             
             HStack {
                 MessageTetField(messageText: $messageText, isTapped: _tappedOnMessageTextField)
@@ -23,8 +23,8 @@ struct MessageControlView: View {
             .frame(maxWidth: .infinity, maxHeight: 76)
             .background(.ultraThinMaterial)
             .background(Color.purpleSolid)
-            .padding(.bottom, 75)
+//            .padding(.bottom, 24)
         }
-        .offset(CGSize(width: 0, height: tappedOnMessageTextField ? -170 : 10))
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }

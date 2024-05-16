@@ -21,11 +21,12 @@ struct HeaderForMessageWindow: View {
                 .frame(width: 44, height: 44)
                 .background(Color.white)
                 .cornerRadius(16)
-                .padding(.trailing, 53)
                 .onTapGesture {
                     presentationMode.wrappedValue.dismiss()
                 }
                 .shadow(radius: 10)
+                
+                Spacer()
                 
                 HStack {
                     Text("Name of guest")
@@ -38,12 +39,9 @@ struct HeaderForMessageWindow: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: 76)
-            .padding(.top, 80)
-            .padding(.horizontal, 40)
+            .padding(.horizontal, 20)
             
             Spacer()
         }
-        .ignoresSafeArea(.all, edges: .top)
-        .offset(CGSize(width: 0, height: tappedOnMessageTextField ? 150 : 0))
     }
 }

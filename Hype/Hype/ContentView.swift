@@ -42,6 +42,7 @@ struct ContentView: View {
                     }
             }
         }
+        .preferredColorScheme(.light)
         .onAppear {
             Task {
                 await SupabaseService.shared.checkSession()
