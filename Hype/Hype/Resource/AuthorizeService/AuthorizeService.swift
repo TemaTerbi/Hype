@@ -54,7 +54,6 @@ class AuthorizeService: AuthorizeServiceProtocol {
     
     func invalidSession() {
         sigInState = .logout
-        session = nil
         print("не удалось получить сессию")
     }
     
