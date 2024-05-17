@@ -11,7 +11,7 @@ class SearchViewModel: ObservableObject {
     @Published var profilesList: [Profile] = []
     
     func fetchProfiles() async {
-        let profiles = await SupabaseService.shared.fetchProfiles()
+        let profiles = await SupabaseService.shared._dataBaseService.fetchProfiles()
         
         DispatchQueue.main.async {
             self.profilesList = profiles

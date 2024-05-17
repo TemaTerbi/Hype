@@ -47,6 +47,8 @@
 		CE2241AA2BF7925D0091AB3C /* UserWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241A92BF7925D0091AB3C /* UserWorker.swift */; };
 		CE2241AE2BF7997A0091AB3C /* UserWorkerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241AD2BF7997A0091AB3C /* UserWorkerProtocol.swift */; };
 		CE2241B12BF799900091AB3C /* AuthorizeServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241B02BF799900091AB3C /* AuthorizeServiceProtocol.swift */; };
+		CE2241B42BF7A1460091AB3C /* DatabaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241B32BF7A1460091AB3C /* DatabaseServiceProtocol.swift */; };
+		CE2241B62BF7A1580091AB3C /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241B52BF7A1580091AB3C /* DatabaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		CE2241A92BF7925D0091AB3C /* UserWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorker.swift; sourceTree = "<group>"; };
 		CE2241AD2BF7997A0091AB3C /* UserWorkerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorkerProtocol.swift; sourceTree = "<group>"; };
 		CE2241B02BF799900091AB3C /* AuthorizeServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeServiceProtocol.swift; sourceTree = "<group>"; };
+		CE2241B32BF7A1460091AB3C /* DatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceProtocol.swift; sourceTree = "<group>"; };
+		CE2241B52BF7A1580091AB3C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 		CE2241532BECF6A70091AB3C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				CE2241B22BF7A1330091AB3C /* DatabaseService */,
 				CE2241AC2BF7996B0091AB3C /* UserWorker */,
 				CE2241AB2BF799610091AB3C /* AuthorizeService */,
 				CE2241452BECF6910091AB3C /* HypeApp.swift */,
@@ -289,6 +294,15 @@
 			path = UserWorker;
 			sourceTree = "<group>";
 		};
+		CE2241B22BF7A1330091AB3C /* DatabaseService */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241B32BF7A1460091AB3C /* DatabaseServiceProtocol.swift */,
+				CE2241B52BF7A1580091AB3C /* DatabaseService.swift */,
+			);
+			path = DatabaseService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -370,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2241B62BF7A1580091AB3C /* DatabaseService.swift in Sources */,
 				CE2241922BF21B5A0091AB3C /* SearchViewModel.swift in Sources */,
 				CE2241872BEDA5E00091AB3C /* Profile.swift in Sources */,
 				CE2241A82BF78DE10091AB3C /* AuthorizeService.swift in Sources */,
@@ -401,6 +416,7 @@
 				CE22415C2BED00470091AB3C /* ChatCell.swift in Sources */,
 				CE2241AE2BF7997A0091AB3C /* UserWorkerProtocol.swift in Sources */,
 				CE22419E2BF57AB20091AB3C /* MessageControlView.swift in Sources */,
+				CE2241B42BF7A1460091AB3C /* DatabaseServiceProtocol.swift in Sources */,
 				CE2241562BECFDCF0091AB3C /* ChatZone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

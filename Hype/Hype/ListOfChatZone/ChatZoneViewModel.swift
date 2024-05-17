@@ -36,7 +36,7 @@ class ChatZoneViewModel: ObservableObject {
     
     func fetchRooms() async {
         stateOfChatList = .loadingChats
-        let rooms = await SupabaseService.shared.fetchRooms()
+        let rooms = await SupabaseService.shared._dataBaseService.fetchRooms()
         
         DispatchQueue.main.async {
             self.roomsList = rooms.reversed()

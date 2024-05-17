@@ -55,7 +55,7 @@ struct ProfileCell: View {
             
             Button("Начать общение") {
                 Task {
-                    await SupabaseService.shared.insertNewRoom(guestUserId: profile.id)
+                    await SupabaseService.shared._dataBaseService.insertNewRoom(guestUserId: profile.id)
                 }
             }
             
