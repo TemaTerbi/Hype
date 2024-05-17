@@ -39,6 +39,10 @@ class AuthorizeService: AuthorizeServiceProtocol {
         self.client = client
     }
     
+    deinit {
+        print("\(self) deinited")
+    }
+    
     func checkUserForSigin() async {
         do {
             session = try await getClient.auth.session
@@ -98,5 +102,9 @@ class AuthorizeService: AuthorizeServiceProtocol {
     
     func getSessionsState() -> SigningState {
         sigInState
+    }
+    
+    func getSessionId() -> UUID {
+        getSession.user.id
     }
 }

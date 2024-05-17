@@ -19,7 +19,7 @@ struct ChatCell: View {
         let keys = messages?.last?.keys.reversed()
         let lastKeyForMessage = keys?.first ?? ""
         
-        let currentSessionId = SupabaseService.shared.getSessionId()
+        let currentSessionId = SupabaseService.shared._authorizeService.getSessionId()
         
         if currentSessionId == room.own_user {
             lastetMessageFromUsername = room.guestUserName ?? ""

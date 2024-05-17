@@ -12,7 +12,9 @@ protocol AuthorizeServiceProtocol {
     func buildAuthorizeService(client: SupabaseClient)
     func getSessionsState() -> SigningState
     func invalidSession()
+    func getSessionId() -> UUID
     func checkSession() async
+    func signOut() async
     func sigIn(email: String, password: String) async
     func signUp(email: String, password: String) async
     

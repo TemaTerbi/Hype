@@ -62,8 +62,4 @@ class SupabaseService {
             }
         }
     }
-    
-    func getSessionId() -> UUID {
-        authorizeService.getSession.user.id
-    }
 }

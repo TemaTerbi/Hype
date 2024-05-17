@@ -36,32 +36,40 @@ struct ProfileCell: View {
     @State var profile: Profile
     
     var body: some View {
-        HStack {
-            Circle()
-                .fill(Color.red)
-                .padding(10)
-                .overlay {
-                    VStack {
-                        Text("❤️")
+        VStack {
+            HStack {
+                Circle()
+                    .fill(Color.red)
+                    .padding(10)
+                    .overlay {
+                        VStack {
+                            Text("❤️")
+                        }
+                    }
+                
+                VStack(alignment: .leading) {
+                    Text(profile.username ?? "")
+                        .font(.system(size: 23, weight: .medium, design: .rounded))
+                }
+                
+                Spacer()
+                
+                Button("Начать общение") {
+                    Task {
+                        await SupabaseService.shared._dataBaseService.insertNewRoom(guestUserId: profile.id)
                     }
                 }
-            
-            VStack(alignment: .leading) {
-                Text(profile.username ?? "")
-                    .font(.system(size: 23, weight: .medium, design: .rounded))
+                
+                Spacer()
             }
+            .frame(maxWidth: .infinity, maxHeight: 76)
+            .background(Color.white)
             
-            Spacer()
-            
-            Button("Начать общение") {
+            Button("Выйти") {
                 Task {
-                    await SupabaseService.shared._dataBaseService.insertNewRoom(guestUserId: profile.id)
+                    await SupabaseService.shared._authorizeService.signOut()
                 }
             }
-            
-            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: 76)
-        .background(Color.white)
     }
 }
