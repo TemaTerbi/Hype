@@ -14,47 +14,48 @@ struct MessagesWindow: View {
     @Binding var tabbarIsShow: Bool
     
     var body: some View {
-        VStack {
-            VStack(spacing: 0) {
-                ScrollViewReader { value in
-                    ScrollView {
-                        ForEach(0..<20) { i in
-                            HStack {
-                                Spacer()
-                                
-                                MessageView()
+        NavigationView {
+            VStack {
+                VStack(spacing: 0) {
+                    ScrollViewReader { value in
+                        ScrollView {
+                            ForEach(0..<20) { i in
+                                HStack {
+                                    Spacer()
+                                    
+                                    MessageView()
+                                }
+                                .id(i)
                             }
-                            .id(i)
+                        }
+                        .scrollIndicators(.hidden)
+                        .onAppear {
+                            value.scrollTo(19, anchor: .bottom)
                         }
                     }
-                    .ignoresSafeArea(.all, edges: .top)
-                    .scrollIndicators(.hidden)
-                    .onAppear {
-                        value.scrollTo(19, anchor: .bottom)
-                    }
+                }
+                .padding(.horizontal, 10)
+                
+            }
+            .background(content: {
+                Image(ImagesName.chatBackground.rawValue)
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .scaledToFill()
+            })
+            .safeAreaInset(edge: .bottom, content: {
+                MessageControlView(tappedOnMessageTextField: _tappedOnMessageTextField, messageText: $messageText)
+            })
+            .onAppear {
+                withAnimation(.bouncy) {
+                    tabbarIsShow = false
                 }
             }
-            .padding(.horizontal, 10)
-            
         }
-        .background(content: {
-            Image(ImagesName.chatBackground.rawValue)
-                .resizable()
-                .edgesIgnoringSafeArea(.all)
-                .scaledToFill()
-        })
-        .safeAreaInset(edge: .top, content: {
+        .toolbar(content: {
             HeaderForMessageWindow(tappedOnMessageTextField: _tappedOnMessageTextField)
         })
-        .safeAreaInset(edge: .bottom, content: {
-            MessageControlView(tappedOnMessageTextField: _tappedOnMessageTextField, messageText: $messageText)
-        })
-        .navigationBarBackButtonHidden()
-        .onAppear {
-            withAnimation(.bouncy) {
-                tabbarIsShow = false
-            }
-        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

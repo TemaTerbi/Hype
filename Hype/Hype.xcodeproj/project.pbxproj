@@ -42,6 +42,7 @@
 		CE22419C2BF57A9A0091AB3C /* MessageTetField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419B2BF57A9A0091AB3C /* MessageTetField.swift */; };
 		CE22419E2BF57AB20091AB3C /* MessageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419D2BF57AB20091AB3C /* MessageControlView.swift */; };
 		CE2241A02BF57AC80091AB3C /* HeaderForMessageWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419F2BF57AC80091AB3C /* HeaderForMessageWindow.swift */; };
+		CE2241A42BF7883E0091AB3C /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241A32BF7883E0091AB3C /* UINavigationControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		CE22419B2BF57A9A0091AB3C /* MessageTetField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTetField.swift; sourceTree = "<group>"; };
 		CE22419D2BF57AB20091AB3C /* MessageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageControlView.swift; sourceTree = "<group>"; };
 		CE22419F2BF57AC80091AB3C /* HeaderForMessageWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderForMessageWindow.swift; sourceTree = "<group>"; };
+		CE2241A32BF7883E0091AB3C /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2241582BECFE150091AB3C /* ColorTheme.swift */,
+				CE2241A32BF7883E0091AB3C /* UINavigationControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				CE2241692BED46E70091AB3C /* StateOfChatList.swift in Sources */,
 				CE22419C2BF57A9A0091AB3C /* MessageTetField.swift in Sources */,
 				CE2241642BED39610091AB3C /* ImagesName.swift in Sources */,
+				CE2241A42BF7883E0091AB3C /* UINavigationControllerExtension.swift in Sources */,
 				CE2241482BECF6910091AB3C /* ContentView.swift in Sources */,
 				CE22416C2BED73070091AB3C /* Tabbar.swift in Sources */,
 				CE2241722BED83C60091AB3C /* IdentifableElementForTabbar.swift in Sources */,
