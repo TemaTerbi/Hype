@@ -17,19 +17,19 @@ struct ContentView: View {
                 VStack {
                     Button("Войти Imya") {
                         Task {
-                            await SupabaseService.shared.sigIn(email: "tematerbiapple@mail.ru", password: "123456")
+                            await SupabaseService.shared._authorizeService.sigIn(email: "tematerbiapple@mail.ru", password: "123456")
                         }
                     }
                     
                     Button("Войти TeRb1") {
                         Task {
-                            await SupabaseService.shared.sigIn(email: "tematerbi@mail.ru", password: "123456")
+                            await SupabaseService.shared._authorizeService.sigIn(email: "tematerbi@mail.ru", password: "123456")
                         }
                     }
                     
                     Button("Рега") {
                         Task {
-                            await SupabaseService.shared.signUp(email: "tematerbiapple@mail.ru", password: "123456")
+                            await SupabaseService.shared._authorizeService.signUp(email: "tematerbiapple@mail.ru", password: "123456")
                         }
                     }
                 }
@@ -37,7 +37,7 @@ struct ContentView: View {
                 Tabbar()
                     .onAppear {
                         Task {
-                            await SupabaseService.shared.getCurrentUser()
+                            await SupabaseService.shared._userWorker.getCurrentUser()
                         }
                     }
             }
@@ -45,7 +45,7 @@ struct ContentView: View {
         .preferredColorScheme(.light)
         .onAppear {
             Task {
-                await SupabaseService.shared.checkSession()
+                await SupabaseService.shared._authorizeService.checkSession()
             }
         }
     }

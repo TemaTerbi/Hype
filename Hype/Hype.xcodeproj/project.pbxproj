@@ -43,6 +43,10 @@
 		CE22419E2BF57AB20091AB3C /* MessageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419D2BF57AB20091AB3C /* MessageControlView.swift */; };
 		CE2241A02BF57AC80091AB3C /* HeaderForMessageWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE22419F2BF57AC80091AB3C /* HeaderForMessageWindow.swift */; };
 		CE2241A42BF7883E0091AB3C /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241A32BF7883E0091AB3C /* UINavigationControllerExtension.swift */; };
+		CE2241A82BF78DE10091AB3C /* AuthorizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241A72BF78DE00091AB3C /* AuthorizeService.swift */; };
+		CE2241AA2BF7925D0091AB3C /* UserWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241A92BF7925D0091AB3C /* UserWorker.swift */; };
+		CE2241AE2BF7997A0091AB3C /* UserWorkerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241AD2BF7997A0091AB3C /* UserWorkerProtocol.swift */; };
+		CE2241B12BF799900091AB3C /* AuthorizeServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2241B02BF799900091AB3C /* AuthorizeServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +81,10 @@
 		CE22419D2BF57AB20091AB3C /* MessageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageControlView.swift; sourceTree = "<group>"; };
 		CE22419F2BF57AC80091AB3C /* HeaderForMessageWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderForMessageWindow.swift; sourceTree = "<group>"; };
 		CE2241A32BF7883E0091AB3C /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
+		CE2241A72BF78DE00091AB3C /* AuthorizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeService.swift; sourceTree = "<group>"; };
+		CE2241A92BF7925D0091AB3C /* UserWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorker.swift; sourceTree = "<group>"; };
+		CE2241AD2BF7997A0091AB3C /* UserWorkerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorkerProtocol.swift; sourceTree = "<group>"; };
+		CE2241B02BF799900091AB3C /* AuthorizeServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeServiceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +149,8 @@
 		CE2241532BECF6A70091AB3C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				CE2241AC2BF7996B0091AB3C /* UserWorker */,
+				CE2241AB2BF799610091AB3C /* AuthorizeService */,
 				CE2241452BECF6910091AB3C /* HypeApp.swift */,
 				CE2241812BED89CA0091AB3C /* Supabase.swift */,
 				CE2241862BEDA5E00091AB3C /* Profile.swift */,
@@ -261,6 +271,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CE2241AB2BF799610091AB3C /* AuthorizeService */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241B02BF799900091AB3C /* AuthorizeServiceProtocol.swift */,
+				CE2241A72BF78DE00091AB3C /* AuthorizeService.swift */,
+			);
+			path = AuthorizeService;
+			sourceTree = "<group>";
+		};
+		CE2241AC2BF7996B0091AB3C /* UserWorker */ = {
+			isa = PBXGroup;
+			children = (
+				CE2241AD2BF7997A0091AB3C /* UserWorkerProtocol.swift */,
+				CE2241A92BF7925D0091AB3C /* UserWorker.swift */,
+			);
+			path = UserWorker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -344,6 +372,7 @@
 			files = (
 				CE2241922BF21B5A0091AB3C /* SearchViewModel.swift in Sources */,
 				CE2241872BEDA5E00091AB3C /* Profile.swift in Sources */,
+				CE2241A82BF78DE10091AB3C /* AuthorizeService.swift in Sources */,
 				CE2241952BF247E00091AB3C /* MessagesWindow.swift in Sources */,
 				CE22418D2BEE33C70091AB3C /* EnvrimomentObject.swift in Sources */,
 				CE2241692BED46E70091AB3C /* StateOfChatList.swift in Sources */,
@@ -353,6 +382,7 @@
 				CE2241482BECF6910091AB3C /* ContentView.swift in Sources */,
 				CE22416C2BED73070091AB3C /* Tabbar.swift in Sources */,
 				CE2241722BED83C60091AB3C /* IdentifableElementForTabbar.swift in Sources */,
+				CE2241AA2BF7925D0091AB3C /* UserWorker.swift in Sources */,
 				CE22415E2BED0EE70091AB3C /* HeaderOfChatList.swift in Sources */,
 				CE2241592BECFE150091AB3C /* ColorTheme.swift in Sources */,
 				CE2241602BED35FD0091AB3C /* PlacehodlerForChatList.swift in Sources */,
@@ -363,11 +393,13 @@
 				CE22418B2BEE33760091AB3C /* ContentViewModel.swift in Sources */,
 				CE2241892BEE334B0091AB3C /* SiginState.swift in Sources */,
 				CE2241622BED37640091AB3C /* ChatZoneViewModel.swift in Sources */,
+				CE2241B12BF799900091AB3C /* AuthorizeServiceProtocol.swift in Sources */,
 				CE2241902BF216CA0091AB3C /* SearchZone.swift in Sources */,
 				CE2241A02BF57AC80091AB3C /* HeaderForMessageWindow.swift in Sources */,
 				CE2241752BED84E00091AB3C /* DefaultWhiteButton.swift in Sources */,
 				CE2241822BED89CA0091AB3C /* Supabase.swift in Sources */,
 				CE22415C2BED00470091AB3C /* ChatCell.swift in Sources */,
+				CE2241AE2BF7997A0091AB3C /* UserWorkerProtocol.swift in Sources */,
 				CE22419E2BF57AB20091AB3C /* MessageControlView.swift in Sources */,
 				CE2241562BECFDCF0091AB3C /* ChatZone.swift in Sources */,
 			);

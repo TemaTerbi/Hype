@@ -10,114 +10,25 @@ import Supabase
 import SwiftUI
 
 class SupabaseService {
+    static let shared = SupabaseService(authorizeService: AuthorizeService(), userWorker: UserWorker())
+    
     private let client = SupabaseClient(supabaseURL: URL(string: EnvObject.supabaseUrl)!, supabaseKey: EnvObject.supabaseKey)
-    private var session: Session?
+    private let authorizeService: AuthorizeServiceProtocol
+    private let userWorker: UserWorkerProtocol
     
-    static let shared = SupabaseService()
-    
-    @Published var sigInState: SigningState = .logout
-    
-    //MARK: - Private func
-    private func checkUserForSigin() async {
-        do {
-            session = try await client.auth.session
-            sigInState = .loggin
-        } catch {
-            invalidSession()
-        }
+    var _authorizeService: AuthorizeServiceProtocol {
+        return authorizeService
     }
     
-    private func invalidSession() {
-        sigInState = .logout
-        session = nil
-        print("не удалось получить сессию")
+    var _userWorker: UserWorkerProtocol {
+        return userWorker
     }
     
-    private func getCurrentUserBy(id: UUID) async -> Profile {
-        do {
-            let profiles: [Profile] = try await client.from(EnvObject.profilesTable)
-                .select()
-                .execute()
-                .value
-            
-            let user = profiles.first { profile in
-                profile.id == id
-            }
-            
-            if let userNonOptional = user  {
-                return userNonOptional
-            }
-        } catch(let error) {
-            invalidSession()
-            print(error)
-        }
-        
-        return Profile(id: UUID())
-    }
-    
-    //MARK: - Public func
-    func sigIn(email: String, password: String) async {
-        do {
-            try await client.auth.signIn(email: email, password: password)
-            
-            await checkUserForSigin()
-        } catch {
-            print("Не удалось войти")
-        }
-    }
-    
-    func signUp(email: String, password: String) async {
-        do {
-            try await client.auth.signUp(email: email, password: password)
-        } catch {
-            //
-        }
-    }
-    
-    func signOut() async {
-        do {
-            try await client.auth.signOut()
-            await checkSession()
-        } catch {
-            print("Чет не выходит")
-        }
-    }
-    
-    func checkSession() async {
-        do {
-            session = try await client.auth.session
-            sigInState = .loggin
-        } catch {
-            invalidSession()
-            do {
-                session = try await client.auth.refreshSession()
-                sigInState = .loggin
-            } catch {
-                invalidSession()
-            }
-        }
-    }
-    
-    func getSessionsState() -> SigningState {
-        sigInState
-    }
-    
-    func getCurrentUser() async {
-        do {
-            let profiles: [Profile] = try await client.from(EnvObject.profilesTable)
-                .select()
-                .execute()
-                .value
-            
-            let user = profiles.first { profile in
-                profile.id == session?.user.id
-            }
-            
-            print(user)
-        } catch(let error) {
-            invalidSession()
-            print(error)
-        }
+    init(authorizeService: AuthorizeServiceProtocol, userWorker: UserWorkerProtocol) {
+        self.authorizeService = authorizeService
+        self.userWorker = userWorker
+        authorizeService.buildAuthorizeService(client: client)
+        userWorker.buildWorker(client: client, authorizeService: authorizeService)
     }
     
     func fetchProfiles() async -> [Profile] {
@@ -127,7 +38,7 @@ class SupabaseService {
                 .execute()
                 .value
             
-            let filterProfiles = profiles.filter { $0.id != session?.user.id }
+            let filterProfiles = profiles.filter { $0.id != authorizeService.getSession.user.id }
             
             return filterProfiles
         } catch(let error) {
@@ -140,15 +51,15 @@ class SupabaseService {
         var resultRoom: [Rooms] = []
         
         do {
-            let myOwnRooms: [Rooms] = try await client.from(EnvObject.roomsTable)
+            let myOwnRooms: [Rooms] = try await authorizeService.getClient.from(EnvObject.roomsTable)
                 .select()
-                .eq("own_user", value: session?.user.id)
+                .eq("own_user", value: authorizeService.getSession.user.id)
                 .execute()
                 .value
             
-            let guestRoom: [Rooms] = try await client.from(EnvObject.roomsTable)
+            let guestRoom: [Rooms] = try await authorizeService.getClient.from(EnvObject.roomsTable)
                 .select()
-                .eq("guest_user", value: session?.user.id)
+                .eq("guest_user", value: authorizeService.getSession.user.id)
                 .execute()
                 .value
             
@@ -156,8 +67,8 @@ class SupabaseService {
             
             for room in allRooms {
                 var currentRoom = room
-                currentRoom.ownUserName = await getCurrentUserBy(id: currentRoom.own_user).username ?? ""
-                currentRoom.guestUserName = await getCurrentUserBy(id: currentRoom.guest_user).username ?? ""
+                currentRoom.ownUserName = await userWorker.getCurrentUserBy(id: currentRoom.own_user).username ?? ""
+                currentRoom.guestUserName = await userWorker.getCurrentUserBy(id: currentRoom.guest_user).username ?? ""
                 
                 resultRoom.append(currentRoom)
             }
@@ -170,7 +81,7 @@ class SupabaseService {
     }
     
     func insertNewRoom(guestUserId: UUID) async {
-        let rooms = Rooms(own_user: session?.user.id ?? UUID(), guest_user: guestUserId, messages: [], chanel_token: "\(Int.random(in: 0...10000))")
+        let rooms = Rooms(own_user: authorizeService.getSession.user.id ?? UUID(), guest_user: guestUserId, messages: [], chanel_token: "\(Int.random(in: 0...10000))")
         
         do {
             let response = try await client.from(EnvObject.roomsTable)
@@ -196,8 +107,8 @@ class SupabaseService {
             let dictionary = insert.record
             do {
                 var newRoom = try dictionary.decode(as: Rooms.self, decoder: JSONDecoder())
-                newRoom.ownUserName = await getCurrentUserBy(id: newRoom.own_user).username ?? ""
-                newRoom.guestUserName = await getCurrentUserBy(id: newRoom.guest_user).username ?? ""
+                newRoom.ownUserName = await userWorker.getCurrentUserBy(id: newRoom.own_user).username ?? ""
+                newRoom.guestUserName = await userWorker.getCurrentUserBy(id: newRoom.guest_user).username ?? ""
                 returnNewRoom(newRoom)
             } catch(let error) {
                 print(error)
@@ -206,6 +117,6 @@ class SupabaseService {
     }
     
     func getSessionId() -> UUID {
-        session?.user.id ?? UUID()
+        authorizeService.getSession.user.id
     }
 }
